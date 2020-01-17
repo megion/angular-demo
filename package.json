@@ -1,0 +1,22 @@
+{
+  "name": "angular-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/megion/angular-demo.git"
+  },
+  "author": "Ilya Zadorozhny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/megion/angular-demo/issues"
+  },
+  "homepage": "https://github.com/megion/angular-demo#readme",
+  "dependencies": {
+    "@angular/cli": "^8.3.23"
+  }
+}
