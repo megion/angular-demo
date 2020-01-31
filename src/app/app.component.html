@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<div class="content" role="main">
+  <!-- Resources -->
+  <h2>Resources</h2>
+
+  <div appColory #coloryCtrl="colory">colory directive</div>
+  <input type="text" (input)="coloryCtrl.setColor($event.target.value)"/>
+
+  <div *appDelay>delay directive</div>
+
+  <!-- Footer -->
+  <footer></footer>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,18 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner" (click)="mycolor='blue'">
+  <span [style.color]="mycolor">Header 5 {{x}}</span>
+  <input type="text" #colorElement />
+  <button (click)="setColor(colorElement.value)">change color</button>
+
+  <ul>
+    <li *ngFor="let user of users">
+      <!--userSelection is event emmited from app-user-card-->
+      <app-user-card
+        [myuser]="user"
+        (userSelection)="setSelectUser(user)"
+      >hello: </app-user-card>
+    </li>
+  </ul>
+
+  selectedUser: {{selectedUser.name}}
+</div>
