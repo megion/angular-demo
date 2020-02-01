@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
+import { UsersService } from '../services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,18 +16,8 @@ export class HeaderComponent implements OnInit {
   users: User[];
   selectedUser: User;
 
-  constructor() {
-    this.users = [
-      {
-        name: 'Ivan',
-      },
-      {
-        name: 'Fedor',
-      },
-      {
-        name: 'Petr',
-      },
-    ];
+  constructor(private router: Router, private userService: UsersService) {
+    this.users = userService.getAllUsers();
 
     this.selectedUser = this.users[0];
   }
@@ -38,5 +30,9 @@ export class HeaderComponent implements OnInit {
 
   setSelectUser(user: User) {
     this.selectedUser = user;
+  }
+
+  goToUser(userId: number) {
+    this.router.navigate(['user', userId]);
   }
 }

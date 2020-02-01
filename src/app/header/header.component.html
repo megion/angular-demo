@@ -7,10 +7,11 @@
   <ul>
     <li *ngFor="let user of users">
       <!--userSelection is event emmited from app-user-card-->
-      <app-user-card
-        [myuser]="user"
-        (userSelection)="setSelectUser(user)"
-      >hello: </app-user-card>
+      <app-user-card [myuser]="user" (userSelection)="setSelectUser(user)"
+        >hello:
+      </app-user-card>
+
+      <a (click)="goToUser(user.id)">{{ user.name }}</a>
     </li>
   </ul>
 
