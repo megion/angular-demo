@@ -8,25 +8,31 @@ import { HeaderComponent } from './header/header.component';
 import { UserCardComponent } from './header/user-card/user-card.component';
 import { ColoryDirective } from './colory.directive';
 import { DelayDirective } from './delay.directive';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './user/profile/profile.component';
 import { SettingsComponent } from './user/settings/settings.component';
 
 import { UserResolveService } from './services/user-resolve.service';
-import {AuthGuard} from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './login/login.component';
 
-const routes = [
+const routes: Routes = [
   {
     path: 'user/:userId',
     canActivate: [AuthGuard],
     resolve: {
-      user: UserResolveService
+      user: UserResolveService,
     },
     component: UserComponent,
     children: [
-        { path: 'settings', component: SettingsComponent },
-        { path: 'profile', component: ProfileComponent }
+      { path: 'settings', component: SettingsComponent },
+      { path: 'profile', component: ProfileComponent },
     ],
+  },
+  { path: 'login', component: LoginComponent, outlet: 'popup' },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
   },
 ];
 
@@ -40,6 +46,7 @@ const routes = [
     DelayDirective,
     ProfileComponent,
     SettingsComponent,
+    LoginComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(routes)],
   providers: [UserResolveService, AuthGuard],

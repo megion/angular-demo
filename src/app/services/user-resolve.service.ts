@@ -21,6 +21,8 @@ export class UserResolveService implements Resolve<User> {
     state: RouterStateSnapshot,
   ): User | Observable<User> | Promise<User> {
     // throw new Error('Method not implemented.');
-    return of(this.userService.getUser(1));
+    const userId: number = parseInt(route.params.userId, 10);
+    console.log('UserResolveService getUser by id:', userId);
+    return of(this.userService.getUser(userId));
   }
 }

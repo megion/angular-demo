@@ -9,7 +9,7 @@ import { User } from '../models/user';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-  private user: User;
+  user: User;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,12 +18,11 @@ export class UserComponent implements OnInit {
   ) {
     this.route.params.subscribe(params => {
       console.log('user component params: ', params);
-      const userId: number = parseInt(params.userId, 10);
-      this.user = this.userService.getUser(userId);
     });
 
     this.route.data.subscribe(data => {
-      console.log('route.data', data.user);
+      this.user = data.user;
+      console.log('UserComponent update user', this.user);
     });
 
     //this.router.events.subscribe((event: Event) => {

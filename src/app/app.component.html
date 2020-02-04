@@ -1,5 +1,11 @@
 <app-header></app-header>
 
+<a [routerLink]="[{outlets: {popup: 'login'}}]">Show popup login</a>
+<br/>
+<a [routerLink]="[{outlets: {popup: null}}]">Hide popup</a>
+<br/>
+<a routerLink="admin">Lazy load module amdin</a>
+
 <div class="content" role="main">
   <!-- Resources -->
   <h2>Resources</h2>
@@ -14,3 +20,4 @@
 </div>
 
 <router-outlet></router-outlet>
+<router-outlet name="popup"></router-outlet>
