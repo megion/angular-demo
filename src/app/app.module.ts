@@ -12,9 +12,16 @@ import { RouterModule } from '@angular/router';
 import { ProfileComponent } from './user/profile/profile.component';
 import { SettingsComponent } from './user/settings/settings.component';
 
+import { UserResolveService } from './services/user-resolve.service';
+import {AuthGuard} from './guards/auth.guard';
+
 const routes = [
   {
     path: 'user/:userId',
+    canActivate: [AuthGuard],
+    resolve: {
+      user: UserResolveService
+    },
     component: UserComponent,
     children: [
         { path: 'settings', component: SettingsComponent },
@@ -35,7 +42,7 @@ const routes = [
     SettingsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(routes)],
-  providers: [],
+  providers: [UserResolveService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
