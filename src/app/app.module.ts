@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { SettingsComponent } from './user/settings/settings.component';
 import { UserResolveService } from './services/user-resolve.service';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
+import { UserFormComponent } from './forms/user-form/user-form.component';
 
 const routes: Routes = [
   {
@@ -30,6 +32,7 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent, outlet: 'popup' },
+  { path: 'user-form', component: UserFormComponent },
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
@@ -47,8 +50,10 @@ const routes: Routes = [
     ProfileComponent,
     SettingsComponent,
     LoginComponent,
+    UserFormComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(routes)],
+  imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(routes),
+    FormsModule, ReactiveFormsModule],
   providers: [UserResolveService, AuthGuard],
   bootstrap: [AppComponent],
 })
