@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+//import { FormControl, FormGroup } from '@angular/forms';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-user-form',
@@ -7,14 +8,21 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
-  nameInput: FormControl;
+  @Input() user: User;
+  //nameInput: FormControl;
+  //fullnameGroup: FormGroup;
 
   constructor() {}
 
   ngOnInit() {
-    this.nameInput = new FormControl('UserName');
-    this.nameInput.valueChanges.subscribe(value => {
-      console.log('input value:', value);
-    });
+    //this.nameInput = new FormControl('');
+    //this.nameInput.valueChanges.subscribe(value => {
+    //console.log('input value:', value);
+    //});
+    //this.fullnameGroup = new FormGroup()
+  }
+
+  onSubmit() {
+    console.log('form submit');
   }
 }

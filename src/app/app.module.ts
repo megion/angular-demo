@@ -17,6 +17,7 @@ import { UserResolveService } from './services/user-resolve.service';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { UserFormComponent } from './forms/user-form/user-form.component';
+import { ForbiddenNameDirective } from './validators/forbidden-name.directive';
 
 const routes: Routes = [
   {
@@ -51,6 +52,7 @@ const routes: Routes = [
     SettingsComponent,
     LoginComponent,
     UserFormComponent,
+    ForbiddenNameDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(routes),
     FormsModule, ReactiveFormsModule],
