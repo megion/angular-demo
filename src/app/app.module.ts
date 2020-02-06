@@ -18,6 +18,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { UserFormComponent } from './forms/user-form/user-form.component';
 import { ForbiddenNameDirective } from './validators/forbidden-name.directive';
+import {ParentRouterDataResolverService} from 'src/app/services/parent-router-data-resolver.service';
 
 const routes: Routes = [
   {
@@ -29,7 +30,13 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       { path: 'settings', component: SettingsComponent },
-      { path: 'profile', component: ProfileComponent },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        resolve: {
+          user: ParentRouterDataResolverService,
+        },
+      },
     ],
   },
   { path: 'login', component: LoginComponent, outlet: 'popup' },
@@ -54,9 +61,14 @@ const routes: Routes = [
     UserFormComponent,
     ForbiddenNameDirective,
   ],
-  imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(routes),
-    FormsModule, ReactiveFormsModule],
-  providers: [UserResolveService, AuthGuard],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  providers: [UserResolveService, AuthGuard, ParentRouterDataResolverService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
