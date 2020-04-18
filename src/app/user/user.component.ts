@@ -20,10 +20,23 @@ export class UserComponent implements OnInit {
       console.log('user component params: ', params);
     });
 
-    this.route.data.subscribe(data => {
-      this.user = data.user;
-      console.log('UserComponent update user', this.user);
+    const ctx = this;
+    this.route.data.subscribe({
+      next(data: any) {
+        ctx.user = data.user;
+        console.log('UserComponent update user', ctx.user);
+      },
+      error(err) {
+        console.error('something wrong occurred: ' + err);
+      },
+      complete() {
+        console.log('UserComponent done');
+      },
     });
+    //data => {
+    //this.user = data.user;
+    //console.log('UserComponent update user', this.user);
+    //});
 
     //this.router.events.subscribe((event: Event) => {
     //event
